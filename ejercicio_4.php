@@ -6,4 +6,7 @@ function lanzarDado()
     return rand(1, 6); // Generar número aleatorio entre 1 y 6 y devolverlo
 }
 
+function imgDadoAzar($resultado){
+    echo '<img src="img/dado'.$resultado.'.svg" alt="">';
+}
 ?>
