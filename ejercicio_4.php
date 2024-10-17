@@ -14,6 +14,20 @@ function numeroDadoEliminar (){
     return $numero;
 }
 
+// Función para eliminar los dados que coincidan con el valor dado
+function eliminarDados($tirada, $dadoAEliminar)
+{
+    $dadosRestantes = [];
+    foreach ($tirada as $dado) {
+        if ($dado != $dadoAEliminar) {
+            $dadosRestantes[] = $dado; // Guardar solo los dados que no coinciden
+        }
+    }
+    return $dadosRestantes;
+}
+
+/* Otra forma para eliminar el dado que coincida con el valor dado.Con array_diff
+
 function borrarDados ($array, $numero){
     // Con array_diff usamos los numero que le hayamos dicho.
     $resultado = array_diff($array, array($numero));
@@ -21,11 +35,11 @@ function borrarDados ($array, $numero){
     $resultado = array_values($resultado);
     return $resultado;
 }
-
+*/
 
 
 // Mostrar por pantalla.
-echo 'TIRADA DE 6 DADOS: <br><br>';
+echo "<p><strong>Tirada de 6 dados:</strong></p>";
 $numeroDados=[];
 for ($i=0; $i<6; $i++){
     $numeroDados[$i]= lanzarDado();
@@ -33,14 +47,14 @@ for ($i=0; $i<6; $i++){
 };
 echo '<br><br>';
 
-echo 'DADO A ELIMINAR: <br><br>';
+echo "<p><strong>Dado a eliminar:</strong></p>";
 $numeroEliminar = numeroDadoEliminar();
 mostrarImgDado($numeroEliminar);
 echo '<br><br>';
 
-echo 'DADO  RESTANTES: <br><br>';
-$nuevoArraySinDadosBorrados = borrarDados($numeroDados, $numeroEliminar);
-
+echo "<p><strong>Dados restantes:</strong></p>";
+//$nuevoArraySinDadosBorrados = borrarDados($numeroDados, $numeroEliminar);
+$nuevoArraySinDadosBorrados = eliminarDados($numeroDados, $numeroEliminar);
 for ($i =0; $i<count($nuevoArraySinDadosBorrados); $i++){
     mostrarImgDado($nuevoArraySinDadosBorrados[$i]);
 };
